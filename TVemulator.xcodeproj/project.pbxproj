@@ -111,10 +111,7 @@
 		532B898A1612182F00D44E0A /* TVemulator */ = {
 			isa = PBXGroup;
 			children = (
-				53A6D9CD1612436E0018DFF9 /* channels.txt */,
-				53A6D9CA161231EF0018DFF9 /* options_key.png */,
-				532B89B0161221DD00D44E0A /* powerButton.gif */,
-				532B89B816122A9300D44E0A /* MacStartUp.mp3 */,
+				53A6D9CF161248E20018DFF9 /* Resources */,
 				532B89961612182F00D44E0A /* AppDelegate.h */,
 				532B89971612182F00D44E0A /* AppDelegate.m */,
 				532B89991612182F00D44E0A /* MainMenu.xib */,
@@ -147,6 +144,17 @@
 				532B89931612182F00D44E0A /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		53A6D9CF161248E20018DFF9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				53A6D9CD1612436E0018DFF9 /* channels.txt */,
+				53A6D9CA161231EF0018DFF9 /* options_key.png */,
+				532B89B0161221DD00D44E0A /* powerButton.gif */,
+				532B89B816122A9300D44E0A /* MacStartUp.mp3 */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

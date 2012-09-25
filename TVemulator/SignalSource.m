@@ -34,7 +34,7 @@
 	NSString *dataString = [NSString stringWithContentsOfURL:[NSURL URLWithString:filePath] encoding:NSUTF8StringEncoding error:nil];
 	NSArray *channelsStrings = [dataString componentsSeparatedByString:@"\n"];
 	for (NSString *i in channelsStrings) {
-		NSArray *channelAttributes = [i componentsSeparatedByString:@"\n"];
+		NSArray *channelAttributes = [i componentsSeparatedByString:@","];
 		NSDictionary *dict = [NSDictionary dictionaryWithObjects:
 							  [NSArray arrayWithObjects:
 							   [NSNumber numberWithDouble:[(NSString *)[channelAttributes objectAtIndex:0] doubleValue]],

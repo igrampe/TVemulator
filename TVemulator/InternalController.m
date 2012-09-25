@@ -106,4 +106,29 @@
 	
 }
 
+- (void)showMenu
+{
+	
+}
+
+- (void)hideMenu
+{
+	
+}
+
+- (void)changeChannel:(int)channel
+{
+	m_currentChannel = channel;
+	[self showScreen];
+}
+
+- (void)showScreen
+{
+	[self hideInputChannel];
+	[self hideMenu];
+	NSNumber *frequency = [self.channelMemory frequencyByChannel:m_currentChannel];
+	self.screenView.image = [self.signalSource signalByFrequency:frequency];
+	[self.screenView updateScreen];
+}
+
 @end

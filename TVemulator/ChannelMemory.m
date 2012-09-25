@@ -25,9 +25,9 @@
 	[super dealloc];
 }
 
-- (NSString *)frequencyByChannel:(int)channel
+- (NSNumber *)frequencyByChannel:(int)channel
 {
-	return nil;
+	return [m_channels objectAtIndex:channel];
 }
 
 - (void)setFrequency:(NSNumber *)frequency forChannel:(int)channel

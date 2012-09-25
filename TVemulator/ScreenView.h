@@ -13,7 +13,11 @@
 	NSImage *m_image;
 }
 
+@property (nonatomic, retain) NSImage *image;
+
 - (void)switchOn;
 - (void)switchOff;
+
+- (void)updateScreen;
 
 @end

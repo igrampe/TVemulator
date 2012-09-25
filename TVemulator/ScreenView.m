@@ -43,4 +43,9 @@
 	[self setNeedsDisplay:YES];
 }
 
+- (void)updateScreen
+{
+	[self setNeedsDisplay:YES];
+}
+
 @end
