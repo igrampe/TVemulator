@@ -13,6 +13,16 @@
 		532B89951612182F00D44E0A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 532B89931612182F00D44E0A /* Credits.rtf */; };
 		532B89981612182F00D44E0A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 532B89971612182F00D44E0A /* AppDelegate.m */; };
 		532B899B1612182F00D44E0A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 532B89991612182F00D44E0A /* MainMenu.xib */; };
+		532B89A31612184D00D44E0A /* SignalSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 532B89A21612184D00D44E0A /* SignalSource.m */; };
+		532B89A61612185C00D44E0A /* ChannelMemory.m in Sources */ = {isa = PBXBuildFile; fileRef = 532B89A51612185C00D44E0A /* ChannelMemory.m */; };
+		532B89A91612186A00D44E0A /* SettingsMemory.m in Sources */ = {isa = PBXBuildFile; fileRef = 532B89A81612186A00D44E0A /* SettingsMemory.m */; };
+		532B89AC16121BD400D44E0A /* ScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 532B89AB16121BD400D44E0A /* ScreenView.m */; };
+		532B89AF16121C1600D44E0A /* RemoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 532B89AE16121C1600D44E0A /* RemoteController.m */; };
+		532B89B1161221DD00D44E0A /* powerButton.gif in Resources */ = {isa = PBXBuildFile; fileRef = 532B89B0161221DD00D44E0A /* powerButton.gif */; };
+		532B89B41612232F00D44E0A /* TVControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 532B89B31612232F00D44E0A /* TVControls.m */; };
+		532B89B7161224DB00D44E0A /* InternalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 532B89B6161224DB00D44E0A /* InternalController.m */; };
+		532B89B916122A9300D44E0A /* MacStartUp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 532B89B816122A9300D44E0A /* MacStartUp.mp3 */; };
+		53A6D9CB161231EF0018DFF9 /* options_key.png in Resources */ = {isa = PBXBuildFile; fileRef = 53A6D9CA161231EF0018DFF9 /* options_key.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +39,23 @@
 		532B89961612182F00D44E0A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		532B89971612182F00D44E0A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		532B899A1612182F00D44E0A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		532B89A11612184D00D44E0A /* SignalSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignalSource.h; sourceTree = "<group>"; };
+		532B89A21612184D00D44E0A /* SignalSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignalSource.m; sourceTree = "<group>"; };
+		532B89A41612185C00D44E0A /* ChannelMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelMemory.h; sourceTree = "<group>"; };
+		532B89A51612185C00D44E0A /* ChannelMemory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelMemory.m; sourceTree = "<group>"; };
+		532B89A71612186A00D44E0A /* SettingsMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsMemory.h; sourceTree = "<group>"; };
+		532B89A81612186A00D44E0A /* SettingsMemory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMemory.m; sourceTree = "<group>"; };
+		532B89AA16121BD400D44E0A /* ScreenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenView.h; sourceTree = "<group>"; };
+		532B89AB16121BD400D44E0A /* ScreenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenView.m; sourceTree = "<group>"; };
+		532B89AD16121C1600D44E0A /* RemoteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteController.h; sourceTree = "<group>"; };
+		532B89AE16121C1600D44E0A /* RemoteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteController.m; sourceTree = "<group>"; };
+		532B89B0161221DD00D44E0A /* powerButton.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = powerButton.gif; sourceTree = "<group>"; };
+		532B89B21612232F00D44E0A /* TVControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVControls.h; sourceTree = "<group>"; };
+		532B89B31612232F00D44E0A /* TVControls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVControls.m; sourceTree = "<group>"; };
+		532B89B5161224DB00D44E0A /* InternalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternalController.h; sourceTree = "<group>"; };
+		532B89B6161224DB00D44E0A /* InternalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternalController.m; sourceTree = "<group>"; };
+		532B89B816122A9300D44E0A /* MacStartUp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MacStartUp.mp3; sourceTree = "<group>"; };
+		53A6D9CA161231EF0018DFF9 /* options_key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = options_key.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,10 +109,27 @@
 		532B898A1612182F00D44E0A /* TVemulator */ = {
 			isa = PBXGroup;
 			children = (
+				53A6D9CA161231EF0018DFF9 /* options_key.png */,
+				532B89B0161221DD00D44E0A /* powerButton.gif */,
+				532B89B816122A9300D44E0A /* MacStartUp.mp3 */,
 				532B89961612182F00D44E0A /* AppDelegate.h */,
 				532B89971612182F00D44E0A /* AppDelegate.m */,
 				532B89991612182F00D44E0A /* MainMenu.xib */,
 				532B898B1612182F00D44E0A /* Supporting Files */,
+				532B89A11612184D00D44E0A /* SignalSource.h */,
+				532B89A21612184D00D44E0A /* SignalSource.m */,
+				532B89A41612185C00D44E0A /* ChannelMemory.h */,
+				532B89A51612185C00D44E0A /* ChannelMemory.m */,
+				532B89A71612186A00D44E0A /* SettingsMemory.h */,
+				532B89A81612186A00D44E0A /* SettingsMemory.m */,
+				532B89AA16121BD400D44E0A /* ScreenView.h */,
+				532B89AB16121BD400D44E0A /* ScreenView.m */,
+				532B89AD16121C1600D44E0A /* RemoteController.h */,
+				532B89AE16121C1600D44E0A /* RemoteController.m */,
+				532B89B21612232F00D44E0A /* TVControls.h */,
+				532B89B31612232F00D44E0A /* TVControls.m */,
+				532B89B5161224DB00D44E0A /* InternalController.h */,
+				532B89B6161224DB00D44E0A /* InternalController.m */,
 			);
 			path = TVemulator;
 			sourceTree = "<group>";
@@ -156,6 +200,9 @@
 				532B898F1612182F00D44E0A /* InfoPlist.strings in Resources */,
 				532B89951612182F00D44E0A /* Credits.rtf in Resources */,
 				532B899B1612182F00D44E0A /* MainMenu.xib in Resources */,
+				532B89B1161221DD00D44E0A /* powerButton.gif in Resources */,
+				532B89B916122A9300D44E0A /* MacStartUp.mp3 in Resources */,
+				53A6D9CB161231EF0018DFF9 /* options_key.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +215,13 @@
 			files = (
 				532B89911612182F00D44E0A /* main.m in Sources */,
 				532B89981612182F00D44E0A /* AppDelegate.m in Sources */,
+				532B89A31612184D00D44E0A /* SignalSource.m in Sources */,
+				532B89A61612185C00D44E0A /* ChannelMemory.m in Sources */,
+				532B89A91612186A00D44E0A /* SettingsMemory.m in Sources */,
+				532B89AC16121BD400D44E0A /* ScreenView.m in Sources */,
+				532B89AF16121C1600D44E0A /* RemoteController.m in Sources */,
+				532B89B41612232F00D44E0A /* TVControls.m in Sources */,
+				532B89B7161224DB00D44E0A /* InternalController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +349,7 @@
 				532B89A01612182F00D44E0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -8,8 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "InternalController.h"
+
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
+@property (nonatomic, retain) IBOutlet InternalController *internalController;
 
 @end
