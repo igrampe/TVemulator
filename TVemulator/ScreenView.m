@@ -15,6 +15,7 @@
     self = [super initWithFrame:frame];
     if (self) {
 		m_backgroundColor = [NSColor blackColor];
+		m_image = nil;
     }
     
     return self;
@@ -22,8 +23,12 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    [m_backgroundColor setFill];
-    NSRectFill(dirtyRect);
+	if (m_image == nil) {
+		[m_backgroundColor setFill];
+		NSRectFill(dirtyRect);
+	} else {
+		[m_image drawInRect:dirtyRect fromRect:dirtyRect operation:NSCompositeSourceOver fraction:1.0];
+	}
 }
 
 - (void)switchOn

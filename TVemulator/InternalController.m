@@ -19,6 +19,15 @@
 	self.controls.delegate = self;
 	m_state = 0;
 	m_currentChannel = 0;
+	m_sound = [NSSound soundNamed:@"MacStartUp"];
+}
+
+- (void)dealloc
+{
+	self.channelMemory = nil;
+	self.settingsMemory = nil;
+	self.signalSource = nil;
+	[super dealloc];
 }
 
 #pragma mark - TVControlsDelegate
@@ -34,7 +43,13 @@
 				[self switchOff];
 			}
 			break;
-			
+		case kTVControlsButtonUp:
+			break;
+		case kTVControlsButtonDown:
+			break;
+		case kTVControlsButtonReset:
+			[self reset];
+			break;
 		default:
 			break;
 	}
@@ -63,14 +78,22 @@
 {
 	m_state = kTVStateOn;
 	[self.screenView switchOn];
-	NSSound *sound = [NSSound soundNamed:@"MacStartUp"];
-	[sound play];
+	
+	[m_sound play];
 }
 
 - (void)switchOff
 {
+	[m_sound stop];
 	m_state = kTVStateOff;
 	[self.screenView switchOff];
+}
+
+- (void)reset
+{
+	m_state = kTVStateChannelSetup;
+	[self.channelMemory reset];
+	
 }
 
 - (void)showInputChannel

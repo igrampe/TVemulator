@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SignalSource : NSObject
+@interface SignalSource : NSObject {
+	NSMutableArray *m_data;
+	NSMutableArray *m_imageData;
+}
 
 - (NSImage *)signalByFrequency:(NSNumber *)frequency;
 

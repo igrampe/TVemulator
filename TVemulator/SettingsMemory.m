@@ -10,4 +10,9 @@
 
 @implementation SettingsMemory
 
+- (void)reset
+{
+	
+}
+
 @end

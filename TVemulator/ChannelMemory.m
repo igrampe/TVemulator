@@ -10,4 +10,36 @@
 
 @implementation ChannelMemory
 
+- (id)init
+{
+	self = [super init];
+	if (self) {
+		m_channels = [[NSMutableArray alloc] init];
+	}
+	return self;
+}
+
+- (void)dealloc
+{
+	[m_channels release];
+	[super dealloc];
+}
+
+- (NSString *)frequencyByChannel:(int)channel
+{
+	return nil;
+}
+
+- (void)setFrequency:(NSNumber *)frequency forChannel:(int)channel
+{
+	[m_channels setObject:frequency atIndexedSubscript:channel];
+}
+
+- (void)reset
+{
+	for (NSNumber *i in m_channels) {
+		i = [NSNumber numberWithInt:0];
+	}
+}
+
 @end

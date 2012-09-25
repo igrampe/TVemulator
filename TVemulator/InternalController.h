@@ -20,8 +20,9 @@ typedef enum {
 	kTVStateOff = 0,
 	kTVStateOn,
 	kTVStateIdle,
-	kTVStateBrightnessSetting,
-	kTVStateContrastSetting,
+	kTVStateChannelSetup,
+	kTVStateBrightnessSetup,
+	kTVStateContrastSetup,
 	kTVStateSwitchChannel
 }TVSate;
 
@@ -29,6 +30,7 @@ typedef enum {
 	TVSate m_state;
 	int m_currentChannel;
 	int m_inputChannel;
+	NSSound *m_sound;
 }
 
 @property (nonatomic, retain) IBOutlet RemoteController *remoteController;

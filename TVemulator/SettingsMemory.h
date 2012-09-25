@@ -10,4 +10,6 @@
 
 @interface SettingsMemory : NSObject
 
+- (void)reset;
+
 @end

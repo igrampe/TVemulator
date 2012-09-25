@@ -10,6 +10,7 @@
 
 @interface ScreenView : NSView {
 	NSColor *m_backgroundColor;
+	NSImage *m_image;
 }
 
 - (void)switchOn;
