@@ -31,7 +31,7 @@
 - (void)readFrequencesInfoFromFile
 {
 	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"channels" ofType:@"txt"];
-	NSString *dataString = [NSString stringWithContentsOfURL:[NSURL URLWithString:filePath] encoding:NSUTF8StringEncoding error:nil];
+	NSString *dataString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
 	NSArray *channelsStrings = [dataString componentsSeparatedByString:@"\n"];
 	for (NSString *i in channelsStrings) {
 		NSArray *channelAttributes = [i componentsSeparatedByString:@","];
@@ -39,7 +39,7 @@
 							  [NSArray arrayWithObjects:
 							   [NSNumber numberWithDouble:[(NSString *)[channelAttributes objectAtIndex:0] doubleValue]],
 							   [NSNumber numberWithDouble:[(NSString *)[channelAttributes objectAtIndex:1] doubleValue]],
-							   [channelAttributes objectAtIndex:3],
+							   [channelAttributes objectAtIndex:2],
 							   nil]
 														 forKeys:
 							  [NSArray arrayWithObjects:

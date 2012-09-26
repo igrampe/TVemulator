@@ -22,6 +22,7 @@
 		532B89B41612232F00D44E0A /* TVControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 532B89B31612232F00D44E0A /* TVControls.m */; };
 		532B89B7161224DB00D44E0A /* InternalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 532B89B6161224DB00D44E0A /* InternalController.m */; };
 		532B89B916122A9300D44E0A /* MacStartUp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 532B89B816122A9300D44E0A /* MacStartUp.mp3 */; };
+		534035FB16130E3800E7CBB1 /* MenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 534035FA16130E3800E7CBB1 /* MenuView.m */; };
 		53A6D9CB161231EF0018DFF9 /* options_key.png in Resources */ = {isa = PBXBuildFile; fileRef = 53A6D9CA161231EF0018DFF9 /* options_key.png */; };
 		53A6D9CE1612436E0018DFF9 /* channels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 53A6D9CD1612436E0018DFF9 /* channels.txt */; };
 /* End PBXBuildFile section */
@@ -56,6 +57,8 @@
 		532B89B5161224DB00D44E0A /* InternalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternalController.h; sourceTree = "<group>"; };
 		532B89B6161224DB00D44E0A /* InternalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternalController.m; sourceTree = "<group>"; };
 		532B89B816122A9300D44E0A /* MacStartUp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MacStartUp.mp3; sourceTree = "<group>"; };
+		534035F916130E3800E7CBB1 /* MenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuView.h; sourceTree = "<group>"; };
+		534035FA16130E3800E7CBB1 /* MenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuView.m; sourceTree = "<group>"; };
 		53A6D9CA161231EF0018DFF9 /* options_key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = options_key.png; sourceTree = "<group>"; };
 		53A6D9CD1612436E0018DFF9 /* channels.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = channels.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,6 +133,8 @@
 				532B89B31612232F00D44E0A /* TVControls.m */,
 				532B89B5161224DB00D44E0A /* InternalController.h */,
 				532B89B6161224DB00D44E0A /* InternalController.m */,
+				534035F916130E3800E7CBB1 /* MenuView.h */,
+				534035FA16130E3800E7CBB1 /* MenuView.m */,
 			);
 			path = TVemulator;
 			sourceTree = "<group>";
@@ -234,6 +239,7 @@
 				532B89AF16121C1600D44E0A /* RemoteController.m in Sources */,
 				532B89B41612232F00D44E0A /* TVControls.m in Sources */,
 				532B89B7161224DB00D44E0A /* InternalController.m in Sources */,
+				534035FB16130E3800E7CBB1 /* MenuView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1070</int>
-		<string key="IBDocument.SystemVersion">11G56</string>
+		<int key="IBDocument.SystemTarget">1080</int>
+		<string key="IBDocument.SystemVersion">12C54</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
-		<string key="IBDocument.AppKitVersion">1138.51</string>
-		<string key="IBDocument.HIToolboxVersion">569.00</string>
+		<string key="IBDocument.AppKitVersion">1187.34</string>
+		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			<string key="NS.object.0">2840</string>
@@ -1315,7 +1315,6 @@
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="686240179"/>
-							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<string key="NSClassName">ScreenView</string>
 						</object>
@@ -1350,6 +1349,7 @@
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 						<object class="NSButton" id="517505288">
 							<reference key="NSNextResponder" ref="439893737"/>
@@ -1375,6 +1375,7 @@
 								<int key="NSPeriodicDelay">400</int>
 								<int key="NSPeriodicInterval">75</int>
 							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 						<object class="NSButton" id="1047573073">
 							<reference key="NSNextResponder" ref="439893737"/>
@@ -1400,6 +1401,7 @@
 								<int key="NSPeriodicDelay">400</int>
 								<int key="NSPeriodicInterval">75</int>
 							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 						<object class="NSButton" id="186295885">
 							<reference key="NSNextResponder" ref="439893737"/>
@@ -1407,7 +1409,6 @@
 							<string key="NSFrame">{{158, 36}, {30, 30}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSTag">3</int>
 							<bool key="NSEnabled">YES</bool>
@@ -1429,15 +1430,15 @@
 								<int key="NSPeriodicDelay">400</int>
 								<int key="NSPeriodicInterval">75</int>
 							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 					</array>
 					<string key="NSFrameSize">{478, 360}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="709884939"/>
-					<int key="NSViewLayerContentsRedrawPolicy">2</int>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMinSize">{480, 474}</string>
 				<string key="NSMaxSize">{480, 474}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
@@ -1469,14 +1470,13 @@
 				<string key="NSWindowContentMaxSize">{175, 242}</string>
 				<string key="NSWindowContentMinSize">{175, 242}</string>
 				<object class="NSView" key="NSWindowView" id="614438974">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<array class="NSMutableArray" key="NSSubviews">
 						<object class="NSButton" id="181725573">
 							<reference key="NSNextResponder" ref="614438974"/>
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{14, 194}, {49, 32}}</string>
 							<reference key="NSSuperview" ref="614438974"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="957295346"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -1494,13 +1494,13 @@
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 						<object class="NSButton" id="957295346">
 							<reference key="NSNextResponder" ref="614438974"/>
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{63, 194}, {49, 32}}</string>
 							<reference key="NSSuperview" ref="614438974"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="698606207"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -1518,13 +1518,13 @@
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 						<object class="NSButton" id="698606207">
 							<reference key="NSNextResponder" ref="614438974"/>
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{112, 194}, {49, 32}}</string>
 							<reference key="NSSuperview" ref="614438974"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="154901763"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -1542,13 +1542,13 @@
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 						<object class="NSButton" id="154901763">
 							<reference key="NSNextResponder" ref="614438974"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{14, 162}, {49, 32}}</string>
+							<string key="NSFrame">{{14, 161}, {49, 32}}</string>
 							<reference key="NSSuperview" ref="614438974"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="649031584"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -1566,13 +1566,13 @@
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 						<object class="NSButton" id="649031584">
 							<reference key="NSNextResponder" ref="614438974"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{63, 162}, {49, 32}}</string>
+							<string key="NSFrame">{{63, 161}, {49, 32}}</string>
 							<reference key="NSSuperview" ref="614438974"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="805684420"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -1590,13 +1590,13 @@
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 						<object class="NSButton" id="805684420">
 							<reference key="NSNextResponder" ref="614438974"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{112, 162}, {49, 32}}</string>
+							<string key="NSFrame">{{112, 161}, {49, 32}}</string>
 							<reference key="NSSuperview" ref="614438974"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="473957716"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -1614,13 +1614,13 @@
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 						<object class="NSButton" id="473957716">
 							<reference key="NSNextResponder" ref="614438974"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{14, 130}, {49, 32}}</string>
+							<string key="NSFrame">{{14, 128}, {49, 32}}</string>
 							<reference key="NSSuperview" ref="614438974"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="761163865"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -1638,13 +1638,13 @@
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 						<object class="NSButton" id="761163865">
 							<reference key="NSNextResponder" ref="614438974"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{63, 130}, {49, 32}}</string>
+							<string key="NSFrame">{{63, 128}, {49, 32}}</string>
 							<reference key="NSSuperview" ref="614438974"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="75090332"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -1662,13 +1662,13 @@
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 						<object class="NSButton" id="75090332">
 							<reference key="NSNextResponder" ref="614438974"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{112, 130}, {49, 32}}</string>
+							<string key="NSFrame">{{112, 128}, {49, 32}}</string>
 							<reference key="NSSuperview" ref="614438974"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="14359232"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -1686,13 +1686,13 @@
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 						<object class="NSButton" id="256647384">
 							<reference key="NSNextResponder" ref="614438974"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{63, 98}, {49, 32}}</string>
+							<string key="NSFrame">{{63, 95}, {49, 32}}</string>
 							<reference key="NSSuperview" ref="614438974"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="635167666"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -1710,13 +1710,13 @@
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 						<object class="NSButton" id="436316323">
 							<reference key="NSNextResponder" ref="614438974"/>
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{64, 58}, {46, 19}}</string>
 							<reference key="NSSuperview" ref="614438974"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="1020364413"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSTag">3</int>
@@ -1739,13 +1739,13 @@
 								<int key="NSPeriodicDelay">400</int>
 								<int key="NSPeriodicInterval">75</int>
 							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 						<object class="NSButton" id="314643999">
 							<reference key="NSNextResponder" ref="614438974"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{25, 63}, {39, 38}}</string>
+							<string key="NSFrame">{{25, 60}, {39, 38}}</string>
 							<reference key="NSSuperview" ref="614438974"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="256647384"/>
 							<string key="NSReuseIdentifierKey">_NS:1574</string>
 							<int key="NSTag">1</int>
@@ -1769,13 +1769,13 @@
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 						<object class="NSButton" id="635167666">
 							<reference key="NSNextResponder" ref="614438974"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{25, 29}, {39, 38}}</string>
+							<string key="NSFrame">{{25, 26}, {39, 38}}</string>
 							<reference key="NSSuperview" ref="614438974"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="436316323"/>
 							<string key="NSReuseIdentifierKey">_NS:1574</string>
 							<int key="NSTag">1</int>
@@ -1795,13 +1795,13 @@
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 						<object class="NSButton" id="1020364413">
 							<reference key="NSNextResponder" ref="614438974"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{112, 63}, {39, 38}}</string>
+							<string key="NSFrame">{{112, 60}, {39, 38}}</string>
 							<reference key="NSSuperview" ref="614438974"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="361828079"/>
 							<string key="NSReuseIdentifierKey">_NS:1574</string>
 							<int key="NSTag">2</int>
@@ -1821,14 +1821,13 @@
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 						<object class="NSButton" id="361828079">
 							<reference key="NSNextResponder" ref="614438974"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{112, 29}, {39, 38}}</string>
+							<string key="NSFrame">{{112, 26}, {39, 38}}</string>
 							<reference key="NSSuperview" ref="614438974"/>
-							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:1574</string>
 							<int key="NSTag">2</int>
 							<bool key="NSEnabled">YES</bool>
@@ -1847,13 +1846,13 @@
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 						<object class="NSButton" id="1057208051">
 							<reference key="NSNextResponder" ref="614438974"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{118, 105}, {37, 19}}</string>
+							<string key="NSFrame">{{118, 102}, {37, 19}}</string>
 							<reference key="NSSuperview" ref="614438974"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="314643999"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSTag">3</int>
@@ -1872,13 +1871,13 @@
 								<int key="NSPeriodicDelay">400</int>
 								<int key="NSPeriodicInterval">75</int>
 							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 						<object class="NSButton" id="14359232">
 							<reference key="NSNextResponder" ref="614438974"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{20, 105}, {37, 19}}</string>
+							<string key="NSFrame">{{20, 102}, {37, 19}}</string>
 							<reference key="NSSuperview" ref="614438974"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="1057208051"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSTag">3</int>
@@ -1897,15 +1896,14 @@
 								<int key="NSPeriodicDelay">400</int>
 								<int key="NSPeriodicInterval">75</int>
 							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 					</array>
 					<string key="NSFrameSize">{175, 242}</string>
-					<reference key="NSSuperview"/>
-					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="181725573"/>
 					<string key="NSReuseIdentifierKey">_NS:21</string>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMinSize">{175, 258}</string>
 				<string key="NSMaxSize">{175, 258}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>

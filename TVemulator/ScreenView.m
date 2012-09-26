@@ -16,6 +16,8 @@
     if (self) {
 		m_backgroundColor = [NSColor blackColor];
 		m_image = nil;
+		m_menuView = [[MenuView alloc] initWithFrame:CGRectMake(20, 50, frame.size.width - 40, 50)];
+		[self addSubview:m_menuView];
     }
     
     return self;
