@@ -15,6 +15,7 @@
 	self = [super init];
 	if (self) {
 		m_channels = [[NSMutableArray alloc] init];
+		[m_channels addObject:[NSNumber numberWithFloat:50]];
 	}
 	return self;
 }

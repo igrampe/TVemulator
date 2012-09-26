@@ -80,6 +80,8 @@
 	[self.screenView switchOn];
 	
 	[m_sound play];
+	[self changeChannel:0];
+	[self showScreen];
 }
 
 - (void)switchOff
@@ -119,6 +121,7 @@
 - (void)changeChannel:(int)channel
 {
 	m_currentChannel = channel;
+	self.screenView.image = [self.signalSource signalByFrequency:[self.channelMemory frequencyByChannel:m_currentChannel]];
 	[self showScreen];
 }
 
@@ -126,8 +129,6 @@
 {
 	[self hideInputChannel];
 	[self hideMenu];
-	NSNumber *frequency = [self.channelMemory frequencyByChannel:m_currentChannel];
-	self.screenView.image = [self.signalSource signalByFrequency:frequency];
 	[self.screenView updateScreen];
 }
 

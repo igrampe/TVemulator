@@ -33,19 +33,23 @@
 	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"channels" ofType:@"txt"];
 	NSString *dataString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
 	NSArray *channelsStrings = [dataString componentsSeparatedByString:@"\n"];
-	for (NSString *i in channelsStrings) {
-		NSArray *channelAttributes = [i componentsSeparatedByString:@","];
+	for (int i = 0; i < [channelsStrings count]; i++) {
+		NSString *channelString = [channelsStrings objectAtIndex:i];
+		NSArray *channelAttributes = [channelString componentsSeparatedByString:@","];
+		NSImage *image = [NSImage imageNamed:[NSString stringWithFormat:@"%d.jpg",i]];
 		NSDictionary *dict = [NSDictionary dictionaryWithObjects:
 							  [NSArray arrayWithObjects:
 							   [NSNumber numberWithDouble:[(NSString *)[channelAttributes objectAtIndex:0] doubleValue]],
 							   [NSNumber numberWithDouble:[(NSString *)[channelAttributes objectAtIndex:1] doubleValue]],
 							   [channelAttributes objectAtIndex:2],
+							   image,
 							   nil]
 														 forKeys:
 							  [NSArray arrayWithObjects:
 							   @"low",
 							   @"high",
 							   @"name",
+							   @"image",
 							   nil]];
 		[m_data addObject:dict];
 	}
@@ -57,7 +61,7 @@
 		NSDictionary *dict = [m_data objectAtIndex:i];
 		if (([frequency doubleValue] <= [[dict objectForKey:@"high"] doubleValue]) &&
 			([frequency doubleValue] >= [[dict objectForKey:@"low"] doubleValue])) {
-			return [m_imageData objectAtIndex:i];
+			return [[m_data objectAtIndex:i] objectForKey:@"image"];
 		}
 	}
 	return nil;
