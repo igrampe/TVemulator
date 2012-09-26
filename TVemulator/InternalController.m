@@ -121,7 +121,8 @@
 - (void)changeChannel:(int)channel
 {
 	m_currentChannel = channel;
-	self.screenView.image = [self.signalSource signalByFrequency:[self.channelMemory frequencyByChannel:m_currentChannel]];
+	NSNumber *frequency = [self.channelMemory frequencyByChannel:m_currentChannel];
+	self.screenView.image = [self.signalSource signalByFrequency:frequency];
 	[self showScreen];
 }
 

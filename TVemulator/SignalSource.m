@@ -61,7 +61,8 @@
 		NSDictionary *dict = [m_data objectAtIndex:i];
 		if (([frequency doubleValue] <= [[dict objectForKey:@"high"] doubleValue]) &&
 			([frequency doubleValue] >= [[dict objectForKey:@"low"] doubleValue])) {
-			return [[m_data objectAtIndex:i] objectForKey:@"image"];
+			NSImage *image = [[m_data objectAtIndex:i] objectForKey:@"image"];
+			return image;
 		}
 	}
 	return nil;
