@@ -10,6 +10,8 @@
 
 @implementation ScreenView
 
+@synthesize image = m_image;
+
 - (id)initWithFrame:(NSRect)frame
 {
     self = [super initWithFrame:frame];
@@ -18,6 +20,10 @@
 		m_image = nil;
 		m_menuView = [[MenuView alloc] initWithFrame:CGRectMake(20, 50, frame.size.width - 40, 50)];
 		[self addSubview:m_menuView];
+		[m_menuView setHidden:YES];
+		m_inputChannelView = [[InputChannelView alloc] initWithFrame:CGRectMake(frame.size.width-20, self.bounds.size.height, 20, 20)];
+		[self addSubview:m_inputChannelView];
+		[m_inputChannelView setHidden:YES];
     }
     
     return self;
@@ -48,6 +54,44 @@
 - (void)updateScreen
 {
 	[self setNeedsDisplay:YES];
+}
+
+- (void)showMenu
+{
+	[m_menuView setHidden:NO];
+}
+
+- (void)hideMenu
+{
+	[m_menuView setHidden:YES];
+}
+
+- (void)showInputChannel
+{
+	[m_inputChannelView setHidden:NO];
+}
+
+- (void)hideInputChannel
+{
+	[m_inputChannelView setHidden:YES];
+}
+
+- (void)setMenuString:(NSString *)menuString
+{
+	_menuString = menuString;
+	m_menuView.title = menuString;
+}
+
+- (void)setMenuValue:(NSNumber *)menuValue
+{
+	_menuValue = menuValue;
+	m_menuView.value = menuValue;
+}
+
+- (void)setInputChannel:(NSNumber *)inputChannel
+{
+	_inputChannel = inputChannel;
+	m_inputChannelView.channel = inputChannel;
 }
 
 @end

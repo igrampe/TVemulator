@@ -43,6 +43,7 @@
 		5393AF1F16139E8E00C331C0 /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5393AF0D16139E8E00C331C0 /* 9.jpg */; };
 		53A6D9CB161231EF0018DFF9 /* options_key.png in Resources */ = {isa = PBXBuildFile; fileRef = 53A6D9CA161231EF0018DFF9 /* options_key.png */; };
 		53A6D9CE1612436E0018DFF9 /* channels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 53A6D9CD1612436E0018DFF9 /* channels.txt */; };
+		53F6273F1614C76300C672F9 /* InputChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F6273E1614C76300C672F9 /* InputChannelView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +98,8 @@
 		5393AF0D16139E8E00C331C0 /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.jpg; sourceTree = "<group>"; };
 		53A6D9CA161231EF0018DFF9 /* options_key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = options_key.png; sourceTree = "<group>"; };
 		53A6D9CD1612436E0018DFF9 /* channels.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = channels.txt; sourceTree = "<group>"; };
+		53F6273D1614C76300C672F9 /* InputChannelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputChannelView.h; sourceTree = "<group>"; };
+		53F6273E1614C76300C672F9 /* InputChannelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputChannelView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +174,8 @@
 				532B89B6161224DB00D44E0A /* InternalController.m */,
 				534035F916130E3800E7CBB1 /* MenuView.h */,
 				534035FA16130E3800E7CBB1 /* MenuView.m */,
+				53F6273D1614C76300C672F9 /* InputChannelView.h */,
+				53F6273E1614C76300C672F9 /* InputChannelView.m */,
 			);
 			path = TVemulator;
 			sourceTree = "<group>";
@@ -320,6 +325,7 @@
 				532B89B41612232F00D44E0A /* TVControls.m in Sources */,
 				532B89B7161224DB00D44E0A /* InternalController.m in Sources */,
 				534035FB16130E3800E7CBB1 /* MenuView.m in Sources */,
+				53F6273F1614C76300C672F9 /* InputChannelView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

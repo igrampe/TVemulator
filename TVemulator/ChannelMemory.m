@@ -26,14 +26,17 @@
 	[super dealloc];
 }
 
-- (NSNumber *)frequencyByChannel:(int)channel
+- (NSNumber *)frequencyByChannel:(NSNumber *)channel
 {
-	return [m_channels objectAtIndex:channel];
+	if ([channel intValue] < [m_channels count]) {
+		return [m_channels objectAtIndex:[channel intValue]];
+	}
+	return nil;
 }
 
-- (void)setFrequency:(NSNumber *)frequency forChannel:(int)channel
+- (void)setFrequency:(NSNumber *)frequency forChannel:(NSNumber *)channel
 {
-	[m_channels setObject:frequency atIndexedSubscript:channel];
+	[m_channels setObject:frequency atIndexedSubscript:[channel intValue]];
 }
 
 - (void)reset

@@ -14,8 +14,8 @@
 
 @property (nonatomic, retain) NSMutableArray *channels;
 
-- (NSNumber *)frequencyByChannel:(int)channel;
-- (void)setFrequency:(NSNumber *)frequency forChannel:(int)channel;
+- (NSNumber *)frequencyByChannel:(NSNumber *)channel;
+- (void)setFrequency:(NSNumber *)frequency forChannel:(NSNumber *)channel;
 - (void)reset;
 
 @end

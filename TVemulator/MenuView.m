@@ -14,7 +14,8 @@
 {
 	self = [super initWithFrame:(NSRect)frameRect];
 	if (self) {
-		m_titleView = [[NSTextView alloc] initWithFrame:CGRectMake(0, 0, frameRect.size.width, frameRect.size.height)];
+		self.value = [NSNumber numberWithInt:100];
+		self.title = nil;
 	}
 	return self;
 }
@@ -25,11 +26,15 @@
 	NSRectFill(dirtyRect);
 	NSMutableDictionary * stringAttributes;
 	stringAttributes = [NSMutableDictionary dictionary];
-	[stringAttributes setObject:[NSFont fontWithName:@"Monaco" size:10] forKey:NSFontAttributeName];
-	[stringAttributes setObject:[NSColor yellowColor] forKey:NSForegroundColorAttributeName];
+	[stringAttributes setObject:[NSFont fontWithName:@"Monaco" size:16] forKey:NSFontAttributeName];
+	[stringAttributes setObject:[NSColor whiteColor] forKey:NSForegroundColorAttributeName];
 	[stringAttributes retain];
-	[@"Some string..." drawAtPoint:NSMakePoint(dirtyRect.size.width / 2 - 20, dirtyRect.size.height - 12) withAttributes:stringAttributes];
+	[self.title drawAtPoint:NSMakePoint(dirtyRect.size.width / 2 - 20, dirtyRect.size.height - 20) withAttributes:stringAttributes];
 	[stringAttributes release];
+	[[NSColor yellowColor] setFill];
+	float valueWith = (dirtyRect.size.width - 40) * ([self.value floatValue] / 100);
+	NSRect valueRect = NSRectFromCGRect(CGRectMake(20, dirtyRect.size.height - 45, valueWith, 20));
+	NSRectFill(valueRect);
 }
 
 @end

@@ -8,8 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SettingsMemory : NSObject
+typedef enum {
+	kBrightness = 0,
+	kContrast
+} SettingsKey;
+
+@interface SettingsMemory : NSObject {
+	NSMutableDictionary *m_settings;
+}
 
 - (void)reset;
+- (NSNumber *)settingsValueForKey:(SettingsKey)key;
+- (void)setSettingsValue:(NSNumber *)value ForKey:(SettingsKey)key;
 
 @end

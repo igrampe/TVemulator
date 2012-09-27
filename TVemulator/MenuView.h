@@ -8,8 +8,16 @@
 
 #import <Cocoa/Cocoa.h>
 
+#define MBRIGHTNESS @"Brightness"
+#define MCONTRAST @"Contrast"
+
+typedef enum {
+	kMenuBrightness = 0,
+	kMenuContrast
+} MenuKey;
+
 @interface MenuView : NSView {
-	NSTextView *m_titleView;
+	
 }
 
 @property (nonatomic, retain) NSString *title;

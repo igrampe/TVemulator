@@ -31,6 +31,11 @@ typedef enum {
 	int m_currentChannel;
 	int m_inputChannel;
 	NSSound *m_sound;
+	NSTimer *m_menuTimer;
+	NSTimer *m_inputChannelTimer;
+	NSTimer *m_setupChannelTimer;
+	NSNumber *m_currentFrequency;
+	NSImage *m_signal;
 }
 
 @property (nonatomic, retain) IBOutlet RemoteController *remoteController;
