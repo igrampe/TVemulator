@@ -12,7 +12,6 @@
 
 - (IBAction)buttonPressed:(id)sender
 {
-	NSLog(@"Button %@ with tag %ld pressed", [(NSButton *)sender title], [sender tag]);
 	RemoteButtonKey buttonKey = 0;
 	if ([sender tag] == 0) {
 		buttonKey = [[(NSButton *)sender title] intValue];

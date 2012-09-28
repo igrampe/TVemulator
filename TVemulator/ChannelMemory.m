@@ -36,7 +36,14 @@
 
 - (void)setFrequency:(NSNumber *)frequency forChannel:(NSNumber *)channel
 {
-	[m_channels setObject:frequency atIndexedSubscript:[channel intValue]];
+	if ([m_channels count] <= [channel intValue]) {
+		for (int i = (int)[m_channels count]; i < [channel intValue]; i++) {
+			[m_channels addObject:[NSNumber numberWithInt:0]];
+		}
+		[m_channels addObject:frequency];
+	} else {
+		[m_channels setObject:frequency atIndexedSubscript:[channel intValue]];
+	}
 }
 
 - (void)reset

@@ -21,7 +21,7 @@
 		m_menuView = [[MenuView alloc] initWithFrame:CGRectMake(20, 50, frame.size.width - 40, 50)];
 		[self addSubview:m_menuView];
 		[m_menuView setHidden:YES];
-		m_inputChannelView = [[InputChannelView alloc] initWithFrame:CGRectMake(frame.size.width-20, self.bounds.size.height, 20, 20)];
+		m_inputChannelView = [[InputChannelView alloc] initWithFrame:CGRectMake(self.bounds.size.width - 30, self.bounds.size.height - 40, 20, 20)];
 		[self addSubview:m_inputChannelView];
 		[m_inputChannelView setHidden:YES];
     }
@@ -92,6 +92,12 @@
 {
 	_inputChannel = inputChannel;
 	m_inputChannelView.channel = inputChannel;
+}
+
+- (void)setIsIdle:(BOOL)isIdle
+{
+	_isIdle = isIdle;
+	m_inputChannelView.isIdle = isIdle;
 }
 
 @end

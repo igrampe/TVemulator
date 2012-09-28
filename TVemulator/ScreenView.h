@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSString *menuString;
 @property (nonatomic, retain) NSNumber *menuValue;
 @property (nonatomic, retain) NSNumber *inputChannel;
+@property (nonatomic, assign) BOOL isIdle;
 
 - (void)switchOn;
 - (void)switchOff;

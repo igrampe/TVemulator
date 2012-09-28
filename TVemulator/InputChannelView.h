@@ -11,5 +11,6 @@
 @interface InputChannelView : NSView
 
 @property (nonatomic, retain) NSNumber *channel;
+@property (nonatomic, assign) BOOL isIdle;
 
 @end

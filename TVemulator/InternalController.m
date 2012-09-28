@@ -34,7 +34,6 @@
 
 - (void)panelButtonWithKeyPressed:(TVControlsButtonKey)key
 {
-	NSLog(@"TVControls button pressed with key %d",key);
 	switch (key) {
 		case kTVControlsButtonPower:
 			if (m_state == kTVStateOff) {
@@ -61,11 +60,16 @@
 {
 	if (key <= kRemoteButton9) {
 		if (m_state == kTVStateSwitchChannel) {
+			m_state = kTVStateIdle;
+			self.screenView.isIdle = YES;
 			[m_inputChannelTimer invalidate];
-			m_inputChannel = m_currentChannel * 10 + key;
+			m_inputChannelTimer = nil;
+			m_inputChannel = m_inputChannel*10 + key;
+			if (m_inputChannel > 60) {
+				m_inputChannel = 60;
+			}
 			self.screenView.inputChannel = [NSNumber numberWithInt:m_inputChannel];
 			[self.screenView showInputChannel];
-			m_state = kTVStateIdle;
 			[self changeChannel:[NSNumber numberWithInt:m_inputChannel]];
 			m_inputChannel = 0;
 			m_inputChannelTimer = [NSTimer scheduledTimerWithTimeInterval:2
@@ -74,15 +78,22 @@
 																 userInfo:nil
 																  repeats:NO];
 		} else {
-			m_state = kTVStateSwitchChannel;
-			m_inputChannel = key;
-			self.screenView.inputChannel = [NSNumber numberWithInt:m_inputChannel];
-			[self.screenView showInputChannel];
-			m_inputChannelTimer = [NSTimer scheduledTimerWithTimeInterval:2
-																   target:self
-																 selector:@selector(changeChannelFromInput)
-																 userInfo:nil
-																  repeats:NO];
+			if (m_state == kTVStateIdle) {
+				m_state = kTVStateSwitchChannel;
+				self.screenView.isIdle = NO;
+				[self hideInputChannel];
+				[m_inputChannelTimer invalidate];
+				m_inputChannelTimer = nil;
+				m_inputChannel = key;
+				self.screenView.inputChannel = [NSNumber numberWithInt:m_inputChannel];
+				[self.screenView showInputChannel];
+				
+				m_inputChannelTimer = [NSTimer scheduledTimerWithTimeInterval:2
+																	   target:self
+																	 selector:@selector(changeChannelFromInput)
+																	 userInfo:nil
+																	  repeats:NO];
+			}
 		}
 	}
 	if (key == kRemoteButtonMenu) {
@@ -104,6 +115,7 @@
 				self.screenView.menuValue = [self.settingsMemory settingsValueForKey:kContrast];
 				[self.screenView updateScreen];
 				[m_menuTimer invalidate];
+				m_menuTimer = nil;
 				m_menuTimer = [NSTimer scheduledTimerWithTimeInterval:5
 															   target:self
 															 selector:@selector(hideMenu)
@@ -117,10 +129,84 @@
 		}
 	}
 	if (key == kRemoteButtonLeft) {
-	
+		switch (m_state) {
+			case kTVStateBrightnessSetup: {
+				[m_menuTimer invalidate];
+				m_menuTimer = nil;
+				NSNumber *brightness = [self.settingsMemory settingsValueForKey:kBrightness];
+				if ([brightness integerValue] > 0) {
+					brightness = [NSNumber numberWithInt:[brightness intValue] - 10];
+					[self.settingsMemory setSettingsValue:brightness ForKey:kBrightness];
+				}
+				self.screenView.menuValue = brightness;
+				[self.screenView updateScreen];
+				m_menuTimer = [NSTimer scheduledTimerWithTimeInterval:5
+															   target:self
+															 selector:@selector(hideMenu)
+															 userInfo:nil
+															  repeats:NO];
+			}
+				break;
+			case kTVStateContrastSetup: {
+				[m_menuTimer invalidate];
+				m_menuTimer = nil;
+				NSNumber *contrast = [self.settingsMemory settingsValueForKey:kContrast];
+				if ([contrast integerValue] > 0) {
+					contrast = [NSNumber numberWithInt:[contrast intValue] - 10];
+					[self.settingsMemory setSettingsValue:contrast ForKey:kContrast];
+				}
+				self.screenView.menuValue = contrast;
+				[self.screenView updateScreen];
+				m_menuTimer = [NSTimer scheduledTimerWithTimeInterval:5
+															   target:self
+															 selector:@selector(hideMenu)
+															 userInfo:nil
+															  repeats:NO];
+			}
+				break;
+			default:
+				break;
+		}
 	}
 	if (key == kRemoteButtonRight) {
-		
+		switch (m_state) {
+			case kTVStateBrightnessSetup: {
+				[m_menuTimer invalidate];
+				m_menuTimer = nil;
+				NSNumber *brightness = [self.settingsMemory settingsValueForKey:kBrightness];
+				if ([brightness integerValue] < 100) {
+					brightness = [NSNumber numberWithInt:[brightness intValue] + 10];
+					[self.settingsMemory setSettingsValue:brightness ForKey:kBrightness];
+				}
+				self.screenView.menuValue = brightness;
+				[self.screenView updateScreen];
+				m_menuTimer = [NSTimer scheduledTimerWithTimeInterval:5
+															   target:self
+															 selector:@selector(hideMenu)
+															 userInfo:nil
+															  repeats:NO];
+			}
+				break;
+			case kTVStateContrastSetup: {
+				[m_menuTimer invalidate];
+				m_menuTimer = nil;
+				NSNumber *contrast = [self.settingsMemory settingsValueForKey:kContrast];
+				if ([contrast integerValue] < 100) {
+					contrast = [NSNumber numberWithInt:[contrast intValue] + 10];
+					[self.settingsMemory setSettingsValue:contrast ForKey:kContrast];
+				}
+				self.screenView.menuValue = contrast;
+				[self.screenView updateScreen];
+				m_menuTimer = [NSTimer scheduledTimerWithTimeInterval:5
+															   target:self
+															 selector:@selector(hideMenu)
+															 userInfo:nil
+															  repeats:NO];
+			}
+				break;
+			default:
+				break;
+		}
 	}
 	if (key == kRemoteButtonProgramUp) {
 		
@@ -163,10 +249,11 @@
 	[self.screenView updateScreen];
 	m_currentFrequency = [NSNumber numberWithFloat:0.0];
 	for (int i = 0; i < 2; i++) {
+		m_signal = nil;
 		if ([m_currentFrequency floatValue] > 730) {
 			break;
 		}
-		[self setupChannel:[NSNumber numberWithInt:i]];
+		[self performSelectorOnMainThread:@selector(setupChannel:) withObject:[NSNumber numberWithInt:i] waitUntilDone:YES];
 	}
 }
 
@@ -180,29 +267,36 @@
 		[self performSelector:@selector(setupChannel:) withObject:channel afterDelay:1];
 	} else {
 		[self.channelMemory setFrequency:m_currentFrequency forChannel:channel];
+		m_currentFrequency = [NSNumber numberWithFloat:
+							  ([[self.signalSource highFrequencyForChannel:channel] floatValue] + 0.5)];
 	}
 }
 
 - (void)hideInputChannel
 {
+	m_inputChannel = 0;
 	[m_inputChannelTimer invalidate];
+	m_inputChannelTimer = nil;
 	[self.screenView hideInputChannel];
 	[self.screenView updateScreen];
 }
 
 - (void)hideMenu
 {
+	m_state = kTVStateIdle;
 	[m_menuTimer invalidate];
+	m_menuTimer = nil;
 	[self.screenView hideMenu];
 	[self.screenView updateScreen];
 }
 
 - (void)changeChannel:(NSNumber *)channel
 {
+	m_state = kTVStateIdle;
 	m_currentChannel = [channel intValue];
 	NSNumber *frequency = [self.channelMemory frequencyByChannel:[NSNumber numberWithInt:m_currentChannel]];
 	self.screenView.image = [self.signalSource signalByFrequency:frequency];
-	[self showScreen];
+	[self.screenView updateScreen];
 }
 
 - (void)changeChannelFromInput
@@ -210,7 +304,14 @@
 	m_currentChannel = m_inputChannel;
 	NSNumber *frequency = [self.channelMemory frequencyByChannel:[NSNumber numberWithInt:m_currentChannel]];
 	self.screenView.image = [self.signalSource signalByFrequency:frequency];
-	[self showScreen];
+	m_state = kTVStateIdle;
+	self.screenView.isIdle = YES;
+	[self.screenView updateScreen];
+	m_inputChannelTimer = [NSTimer scheduledTimerWithTimeInterval:2
+														   target:self
+														 selector:@selector(hideInputChannel)
+														 userInfo:nil
+														  repeats:NO];
 }
 
 - (void)showScreen

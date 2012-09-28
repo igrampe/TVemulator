@@ -14,7 +14,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code here.
+		_isIdle = NO;
     }
     
     return self;
@@ -31,7 +31,11 @@
 	[stringAttributes retain];
 	NSString *channelString = nil;
 	if ([self.channel intValue] < 10) {
-		channelString = [NSString stringWithFormat:@"-%d",[self.channel intValue]];
+		if (_isIdle) {
+			channelString = [NSString stringWithFormat:@"0%d",[self.channel intValue]];
+		} else {
+			channelString = [NSString stringWithFormat:@"%d-",[self.channel intValue]];
+		}
 	} else {
 		channelString = [NSString stringWithFormat:@"%d",[self.channel intValue]];
 	}

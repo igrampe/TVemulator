@@ -37,6 +37,7 @@
 		NSString *channelString = [channelsStrings objectAtIndex:i];
 		NSArray *channelAttributes = [channelString componentsSeparatedByString:@","];
 		NSImage *image = [NSImage imageNamed:[NSString stringWithFormat:@"%d.jpg",i]];
+		[image setSize:NSMakeSize(460, 257)];
 		NSDictionary *dict = [NSDictionary dictionaryWithObjects:
 							  [NSArray arrayWithObjects:
 							   [NSNumber numberWithDouble:[(NSString *)[channelAttributes objectAtIndex:0] doubleValue]],
@@ -64,6 +65,23 @@
 			NSImage *image = [[m_data objectAtIndex:i] objectForKey:@"image"];
 			return image;
 		}
+	}
+	return nil;
+}
+
+- (NSNumber *)highFrequencyForChannel:(NSNumber *)channel
+{
+	if ([m_data count] > [channel intValue]) {
+		NSNumber *frequency = [[m_data objectAtIndex:[channel intValue]] objectForKey:@"high"];
+		return frequency;
+	}
+	return [NSNumber numberWithFloat:730];
+}
+
+- (NSNumber *)lowFrequencyForChannel:(NSNumber *)channel
+{
+	if ([m_data count] > [channel intValue]) {
+		return [[m_data objectAtIndex:[channel intValue]] objectForKey:@"low"];
 	}
 	return nil;
 }

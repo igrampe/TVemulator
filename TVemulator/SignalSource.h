@@ -14,5 +14,7 @@
 }
 
 - (NSImage *)signalByFrequency:(NSNumber *)frequency;
+- (NSNumber *)highFrequencyForChannel:(NSNumber *)channel;
+- (NSNumber *)lowFrequencyForChannel:(NSNumber *)channel;
 
 @end
