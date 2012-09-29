@@ -17,6 +17,7 @@
 		m_settings = [[NSMutableDictionary alloc] init];
 		[m_settings setValue:[NSNumber numberWithInt:50] forKey:[NSString stringWithFormat:@"%d",kBrightness]];
 		[m_settings setValue:[NSNumber numberWithInt:25] forKey:[NSString stringWithFormat:@"%d",kContrast]];
+		[m_settings setValue:[NSNumber numberWithInt:50] forKey:[NSString stringWithFormat:@"%d",kVolume]];
 	}
 	return self;
 }
@@ -31,6 +32,7 @@
 {
 	[m_settings setValue:[NSNumber numberWithInt:50] forKey:[NSString stringWithFormat:@"%d",kBrightness]];
 	[m_settings setValue:[NSNumber numberWithInt:25] forKey:[NSString stringWithFormat:@"%d",kContrast]];
+	[m_settings setValue:[NSNumber numberWithInt:50] forKey:[NSString stringWithFormat:@"%d",kVolume]];
 }
 
 - (NSNumber *)settingsValueForKey:(SettingsKey)key

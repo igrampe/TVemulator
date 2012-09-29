@@ -126,7 +126,14 @@
 																 userInfo:nil
 																  repeats:NO];
 		} else {
-			if (m_state == kTVStateIdle) {
+			if (m_state == kTVStateIdle ||
+				m_state == kTVStateBrightnessSetup ||
+				m_state == kTVStateContrastSetup ||
+				m_state == kTVStateVolumeSetup) {
+				
+				[self hideMenu];
+				[m_menuTimer invalidate];
+				m_menuTimer = nil;
 				m_state = kTVStateSwitchChannel;
 				self.screenView.isIdle = NO;
 				[self hideInputChannel];
@@ -172,7 +179,22 @@
 															  repeats:NO];
 				break;
 			case kTVStateContrastSetup:
+				m_state = kTVStateIdle;
+				[self hideMenu];
 				break;
+			case kTVStateVolumeSetup:
+				[m_menuTimer invalidate];
+				m_menuTimer = nil;
+				m_state = kTVStateBrightnessSetup;
+				self.screenView.menuString = MBRIGHTNESS;
+				self.screenView.menuValue = [self.settingsMemory settingsValueForKey:kBrightness];
+				[self.screenView showMenu];
+				[self.screenView updateScreen];
+				m_menuTimer = [NSTimer scheduledTimerWithTimeInterval:5
+															   target:self
+															 selector:@selector(hideMenu)
+															 userInfo:nil
+															  repeats:NO];
 			default:
 				break;
 		}
@@ -262,16 +284,128 @@
 		}
 	}
 	if (key == kRemoteButtonProgramUp) {
-		
+		if (m_state != kTVStateOff) {
+			[m_menuTimer invalidate];
+			m_menuTimer = nil;
+			[m_inputChannelTimer invalidate];
+			m_inputChannelTimer = nil;
+			[m_setupChannelTimer invalidate];
+			m_setupChannelTimer = nil;
+			m_currentChannel = m_currentChannel + 1;
+			if (m_currentChannel > 60) {
+				m_currentChannel = 0;
+			}
+			[self.screenView hideMenu];
+			self.screenView.isIdle = YES;
+			self.screenView.inputChannel = [NSNumber numberWithInt:m_currentChannel];
+			[self.screenView showInputChannel];
+			[self changeChannel:[NSNumber numberWithInt:m_currentChannel]];
+			[self.screenView updateScreen];
+			m_inputChannelTimer = [NSTimer scheduledTimerWithTimeInterval:2
+																   target:self
+																 selector:@selector(hideInputChannel)
+																 userInfo:nil
+																  repeats:NO];
+		}
 	}
 	if (key == kRemoteButtonProgramDown) {
-		
+		if (m_state != kTVStateOff) {
+			[m_menuTimer invalidate];
+			m_menuTimer = nil;
+			[m_inputChannelTimer invalidate];
+			m_inputChannelTimer = nil;
+			[m_setupChannelTimer invalidate];
+			m_setupChannelTimer = nil;
+			m_currentChannel = m_currentChannel - 1;
+			if (m_currentChannel < 0) {
+				m_currentChannel = 60;
+			}
+			[self.screenView hideMenu];
+			self.screenView.isIdle = YES;
+			self.screenView.inputChannel = [NSNumber numberWithInt:m_currentChannel];
+			[self.screenView showInputChannel];
+			[self changeChannel:[NSNumber numberWithInt:m_currentChannel]];
+			[self.screenView updateScreen];
+			m_inputChannelTimer = [NSTimer scheduledTimerWithTimeInterval:2
+																   target:self
+																 selector:@selector(hideInputChannel)
+																 userInfo:nil
+																  repeats:NO];
+		}
 	}
 	if (key == kRemoteButtonVolumeUp) {
-		
+		if (m_state == kTVStateIdle || m_state == kTVStateBrightnessSetup || m_state == kTVStateContrastSetup) {
+			[m_menuTimer invalidate];
+			m_menuTimer = nil;
+			m_state = kTVStateVolumeSetup;
+			self.screenView.menuString = MVOLUME;
+			self.screenView.menuValue = [self.settingsMemory settingsValueForKey:kVolume];
+			[self.screenView showMenu];
+			[self.screenView updateScreen];
+			[m_menuTimer invalidate];
+			m_menuTimer = nil;
+			m_menuTimer = [NSTimer scheduledTimerWithTimeInterval:5
+														   target:self
+														 selector:@selector(hideMenu)
+														 userInfo:nil
+														  repeats:NO];
+		}
+		if (m_state == kTVStateVolumeSetup) {
+			[m_menuTimer invalidate];
+			m_menuTimer = nil;
+			float volume = [[self.settingsMemory settingsValueForKey:kVolume] floatValue] + 5;
+			if (volume > 100) {
+				volume = 100;
+			}
+			[self.settingsMemory setSettingsValue:[NSNumber numberWithFloat:volume] ForKey:kVolume];
+			self.screenView.menuValue = [self.settingsMemory settingsValueForKey:kVolume];
+			[self.screenView showMenu];
+			[self.screenView updateScreen];
+			[m_menuTimer invalidate];
+			m_menuTimer = nil;
+			m_menuTimer = [NSTimer scheduledTimerWithTimeInterval:5
+														   target:self
+														 selector:@selector(hideMenu)
+														 userInfo:nil
+														  repeats:NO];
+		}
 	}
 	if (key == kRemoteButtonVolumeDown) {
-		
+		if (m_state == kTVStateIdle || m_state == kTVStateBrightnessSetup || m_state == kTVStateContrastSetup) {
+			[m_menuTimer invalidate];
+			m_menuTimer = nil;
+			m_state = kTVStateVolumeSetup;
+			self.screenView.menuString = MVOLUME;
+			self.screenView.menuValue = [self.settingsMemory settingsValueForKey:kVolume];
+			[self.screenView showMenu];
+			[self.screenView updateScreen];
+			[m_menuTimer invalidate];
+			m_menuTimer = nil;
+			m_menuTimer = [NSTimer scheduledTimerWithTimeInterval:5
+														   target:self
+														 selector:@selector(hideMenu)
+														 userInfo:nil
+														  repeats:NO];
+		}
+		if (m_state == kTVStateVolumeSetup) {
+			[m_menuTimer invalidate];
+			m_menuTimer = nil;
+			float volume = [[self.settingsMemory settingsValueForKey:kVolume] floatValue] - 5;
+			if (volume < 0) {
+				volume = 0;
+			}
+			[self.settingsMemory setSettingsValue:[NSNumber numberWithFloat:volume] ForKey:kVolume];
+			self.screenView.menuValue = [self.settingsMemory settingsValueForKey:kVolume];
+			[self.screenView showMenu];
+			[self.screenView updateScreen];
+			[m_menuTimer invalidate];
+			m_menuTimer = nil;
+			m_menuTimer = [NSTimer scheduledTimerWithTimeInterval:5
+														   target:self
+														 selector:@selector(hideMenu)
+														 userInfo:nil
+														  repeats:NO];
+		}
 	}
 	
 }

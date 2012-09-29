@@ -10,10 +10,12 @@
 
 #define MBRIGHTNESS @"Brightness"
 #define MCONTRAST @"Contrast"
+#define MVOLUME @"Volume"
 
 typedef enum {
 	kMenuBrightness = 0,
-	kMenuContrast
+	kMenuContrast,
+	kMenuVolume
 } MenuKey;
 
 @interface MenuView : NSView {

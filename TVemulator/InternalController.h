@@ -23,6 +23,7 @@ typedef enum {
 	kTVStateChannelSetup,
 	kTVStateBrightnessSetup,
 	kTVStateContrastSetup,
+	kTVStateVolumeSetup,
 	kTVStateSwitchChannel
 }TVSate;
 

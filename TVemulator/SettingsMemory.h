@@ -10,7 +10,8 @@
 
 typedef enum {
 	kBrightness = 0,
-	kContrast
+	kContrast,
+	kVolume
 } SettingsKey;
 
 @interface SettingsMemory : NSObject {
