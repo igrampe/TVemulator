@@ -34,7 +34,7 @@ typedef enum {
 	NSTimer *m_menuTimer;
 	NSTimer *m_inputChannelTimer;
 	NSTimer *m_setupChannelTimer;
-	NSNumber *m_currentFrequency;
+	float m_currentFrequency;
 	NSImage *m_signal;
 }
 

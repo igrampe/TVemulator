@@ -29,7 +29,7 @@
 	[stringAttributes setObject:[NSFont fontWithName:@"Monaco" size:16] forKey:NSFontAttributeName];
 	[stringAttributes setObject:[NSColor whiteColor] forKey:NSForegroundColorAttributeName];
 	[stringAttributes retain];
-	[self.title drawAtPoint:NSMakePoint(dirtyRect.size.width / 2 - 20, dirtyRect.size.height - 20) withAttributes:stringAttributes];
+	[self.title drawAtPoint:NSMakePoint(50, dirtyRect.size.height - 20) withAttributes:stringAttributes];
 	[stringAttributes release];
 	[[NSColor yellowColor] setFill];
 	float valueWith = (dirtyRect.size.width - 40) * ([self.value floatValue] / 100);

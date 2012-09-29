@@ -247,28 +247,61 @@
 	[self.channelMemory reset];
 	self.screenView.image = nil;
 	[self.screenView updateScreen];
-	m_currentFrequency = [NSNumber numberWithFloat:0.0];
-	for (int i = 0; i < 2; i++) {
-		m_signal = nil;
-		if ([m_currentFrequency floatValue] > 730) {
-			break;
-		}
-		[self performSelectorOnMainThread:@selector(setupChannel:) withObject:[NSNumber numberWithInt:i] waitUntilDone:YES];
-	}
+	m_currentFrequency = 0.0;
+	m_signal = nil;
+	m_currentChannel = 0;
+	[self setupCurrentChannel];
 }
 
 - (void)setupChannel:(NSNumber *)channel
 {
-	if (!m_signal && ([m_currentFrequency floatValue] < 730)) {
-		m_currentFrequency = [NSNumber numberWithFloat:([m_currentFrequency floatValue] + 0.5)];
-		m_signal = [self.signalSource signalByFrequency:m_currentFrequency];
-		self.screenView.image = m_signal;
+	
+
+}
+
+- (void)setupCurrentChannel
+{
+	[m_setupChannelTimer invalidate];
+	m_setupChannelTimer = nil;
+	if (m_currentChannel >= 60 || (m_currentFrequency >= 730)) {
+		m_state = kTVStateIdle;
+		self.screenView.isIdle = YES;
+		m_currentChannel = 0;
+		[self changeChannel:[NSNumber numberWithInt:m_currentChannel]];
+		self.screenView.inputChannel = [NSNumber numberWithInt:m_currentChannel];
+		[self.screenView hideMenu];
 		[self.screenView updateScreen];
-		[self performSelector:@selector(setupChannel:) withObject:channel afterDelay:1];
+		m_inputChannelTimer = [NSTimer scheduledTimerWithTimeInterval:2
+															   target:self
+															 selector:@selector(hideInputChannel)
+															 userInfo:nil
+															  repeats:NO];
+		NSLog(@"Setup was completed!");
+		return;
+	}
+	NSLog(@"setup channel %d with frequency %4.1f",m_currentChannel, m_currentFrequency);
+	
+	[self changeChannel:[NSNumber numberWithInt:m_currentChannel]];
+	self.screenView.isIdle = YES;
+	self.screenView.inputChannel = [NSNumber numberWithInt:m_currentChannel];
+	[self.screenView showInputChannel];
+	
+	self.screenView.menuString = [NSString stringWithFormat:@"Setting channel %d", m_currentChannel];
+	self.screenView.menuValue = [NSNumber numberWithFloat:m_currentFrequency / 730.0 * 100];
+	[self.screenView showMenu];
+	
+	m_signal = [self.signalSource signalByFrequency:[NSNumber numberWithFloat:m_currentFrequency]];
+	self.screenView.image = m_signal;
+	[self.screenView updateScreen];
+	
+	if (!m_signal) {
+		m_currentFrequency += 1;
+		m_setupChannelTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(setupCurrentChannel) userInfo:nil repeats:NO];
 	} else {
-		[self.channelMemory setFrequency:m_currentFrequency forChannel:channel];
-		m_currentFrequency = [NSNumber numberWithFloat:
-							  ([[self.signalSource highFrequencyForChannel:channel] floatValue] + 0.5)];
+		[self.channelMemory setFrequency:[NSNumber numberWithFloat:m_currentFrequency] forChannel:[NSNumber numberWithInt:m_currentChannel]];
+		m_currentFrequency = ([[self.signalSource highFrequencyForChannel:[NSNumber numberWithInt:m_currentChannel]] floatValue] + 1);
+		m_currentChannel = m_currentChannel + 1;
+		m_setupChannelTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(setupCurrentChannel) userInfo:nil repeats:NO];
 	}
 }
 

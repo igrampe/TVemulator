@@ -18,7 +18,7 @@
     if (self) {
 		m_backgroundColor = [NSColor blackColor];
 		m_image = nil;
-		m_menuView = [[MenuView alloc] initWithFrame:CGRectMake(20, 50, frame.size.width - 40, 50)];
+		m_menuView = [[MenuView alloc] initWithFrame:CGRectMake(20, 20, frame.size.width - 40, 50)];
 		[self addSubview:m_menuView];
 		[m_menuView setHidden:YES];
 		m_inputChannelView = [[InputChannelView alloc] initWithFrame:CGRectMake(self.bounds.size.width - 30, self.bounds.size.height - 40, 20, 20)];
@@ -47,6 +47,7 @@
 
 - (void)switchOff
 {
+	m_image = nil;
 	m_backgroundColor = [NSColor blackColor];
 	[self setNeedsDisplay:YES];
 }
