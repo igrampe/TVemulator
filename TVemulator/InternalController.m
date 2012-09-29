@@ -471,10 +471,8 @@
 															 selector:@selector(hideInputChannel)
 															 userInfo:nil
 															  repeats:NO];
-		NSLog(@"Setup was completed!");
 		return;
 	}
-	NSLog(@"setup channel %d with frequency %4.1f",m_currentChannel, m_currentFrequency);
 	
 	[self changeChannel:[NSNumber numberWithInt:m_currentChannel]];
 	m_state = kTVStateChannelSetup;
