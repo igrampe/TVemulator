@@ -12,10 +12,10 @@
 
 - (void)start
 {
-	self.channelMemory = [[ChannelMemory alloc] init];
-	self.settingsMemory = [[SettingsMemory alloc] init];
-	self.signalSource = [[SignalSource alloc] init];
-	self.remoteController.delegate = self;
+	_channelMemory = [[ChannelMemory alloc] init];
+	_settingsMemory = [[SettingsMemory alloc] init];
+	_signalSource = [[SignalSource alloc] init];
+	_remoteController.delegate = self;
 	self.controls.delegate = self;
 	m_state = 0;
 	m_currentChannel = 0;
@@ -24,9 +24,16 @@
 
 - (void)dealloc
 {
-	self.channelMemory = nil;
-	self.settingsMemory = nil;
-	self.signalSource = nil;
+	[_channelMemory release];
+	[_settingsMemory release];
+	[_signalSource release];
+	[m_menuTimer invalidate];
+	m_menuTimer = nil;
+	[m_inputChannelTimer invalidate];
+	m_inputChannelTimer = nil;
+	[m_setupChannelTimer invalidate];
+	m_setupChannelTimer = nil;
+	m_signal = nil;;
 	[super dealloc];
 }
 

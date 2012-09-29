@@ -30,6 +30,15 @@
     return self;
 }
 
+- (void)dealloc
+{
+	m_image = nil;
+	[m_menuView release];
+	[m_inputChannelView release];
+	[m_CIColorControls release];
+	[super dealloc];
+}
+
 - (void)drawRect:(NSRect)dirtyRect
 {
 	if (m_image == nil) {

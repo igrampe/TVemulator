@@ -18,9 +18,7 @@ typedef enum {
 	kMenuVolume
 } MenuKey;
 
-@interface MenuView : NSView {
-	
-}
+@interface MenuView : NSView
 
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSNumber *value;

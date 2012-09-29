@@ -48,9 +48,7 @@
 
 - (void)reset
 {
-	for (NSNumber *i in m_channels) {
-		i = [NSNumber numberWithInt:0];
-	}
+	[m_channels removeAllObjects];
 }
 
 @end
