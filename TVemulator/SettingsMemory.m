@@ -16,7 +16,7 @@
 	if (self) {
 		m_settings = [[NSMutableDictionary alloc] init];
 		[m_settings setValue:[NSNumber numberWithInt:50] forKey:[NSString stringWithFormat:@"%d",kBrightness]];
-		[m_settings setValue:[NSNumber numberWithInt:50] forKey:[NSString stringWithFormat:@"%d",kContrast]];
+		[m_settings setValue:[NSNumber numberWithInt:25] forKey:[NSString stringWithFormat:@"%d",kContrast]];
 	}
 	return self;
 }
@@ -29,7 +29,8 @@
 
 - (void)reset
 {
-	
+	[m_settings setValue:[NSNumber numberWithInt:50] forKey:[NSString stringWithFormat:@"%d",kBrightness]];
+	[m_settings setValue:[NSNumber numberWithInt:25] forKey:[NSString stringWithFormat:@"%d",kContrast]];
 }
 
 - (NSNumber *)settingsValueForKey:(SettingsKey)key

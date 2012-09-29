@@ -43,11 +43,59 @@
 			}
 			break;
 		case kTVControlsButtonUp:
+			if (m_state != kTVStateOff) {
+				[m_menuTimer invalidate];
+				m_menuTimer = nil;
+				[m_inputChannelTimer invalidate];
+				m_inputChannelTimer = nil;
+				[m_setupChannelTimer invalidate];
+				m_setupChannelTimer = nil;
+				m_currentChannel = m_currentChannel + 1;
+				if (m_currentChannel > 60) {
+					m_currentChannel = 0;
+				}
+				[self.screenView hideMenu];
+				self.screenView.isIdle = YES;
+				self.screenView.inputChannel = [NSNumber numberWithInt:m_currentChannel];
+				[self.screenView showInputChannel];
+				[self changeChannel:[NSNumber numberWithInt:m_currentChannel]];
+				[self.screenView updateScreen];
+				m_inputChannelTimer = [NSTimer scheduledTimerWithTimeInterval:2
+																	   target:self
+																	 selector:@selector(hideInputChannel)
+																	 userInfo:nil
+																	  repeats:NO];
+			}
 			break;
 		case kTVControlsButtonDown:
+			if (m_state != kTVStateOff) {
+				[m_menuTimer invalidate];
+				m_menuTimer = nil;
+				[m_inputChannelTimer invalidate];
+				m_inputChannelTimer = nil;
+				[m_setupChannelTimer invalidate];
+				m_setupChannelTimer = nil;
+				m_currentChannel = m_currentChannel - 1;
+				if (m_currentChannel < 0) {
+					m_currentChannel = 60;
+				}
+				[self.screenView hideMenu];
+				self.screenView.isIdle = YES;
+				self.screenView.inputChannel = [NSNumber numberWithInt:m_currentChannel];
+				[self.screenView showInputChannel];
+				[self changeChannel:[NSNumber numberWithInt:m_currentChannel]];
+				[self.screenView updateScreen];
+				m_inputChannelTimer = [NSTimer scheduledTimerWithTimeInterval:2
+																	   target:self
+																	 selector:@selector(hideInputChannel)
+																	 userInfo:nil
+																	  repeats:NO];
+			}
 			break;
 		case kTVControlsButtonReset:
-			[self reset];
+			if (m_state != kTVStateOff) {
+				[self reset];
+			}
 			break;
 		default:
 			break;
@@ -111,6 +159,7 @@
 															  repeats:NO];
 				break;
 			case kTVStateBrightnessSetup:
+				m_state = kTVStateContrastSetup;
 				self.screenView.menuString = MCONTRAST;
 				self.screenView.menuValue = [self.settingsMemory settingsValueForKey:kContrast];
 				[self.screenView updateScreen];
@@ -135,10 +184,11 @@
 				m_menuTimer = nil;
 				NSNumber *brightness = [self.settingsMemory settingsValueForKey:kBrightness];
 				if ([brightness integerValue] > 0) {
-					brightness = [NSNumber numberWithInt:[brightness intValue] - 10];
+					brightness = [NSNumber numberWithInt:[brightness intValue] - 5];
 					[self.settingsMemory setSettingsValue:brightness ForKey:kBrightness];
 				}
 				self.screenView.menuValue = brightness;
+				[self.screenView setBrightness:[brightness floatValue]];
 				[self.screenView updateScreen];
 				m_menuTimer = [NSTimer scheduledTimerWithTimeInterval:5
 															   target:self
@@ -152,10 +202,11 @@
 				m_menuTimer = nil;
 				NSNumber *contrast = [self.settingsMemory settingsValueForKey:kContrast];
 				if ([contrast integerValue] > 0) {
-					contrast = [NSNumber numberWithInt:[contrast intValue] - 10];
+					contrast = [NSNumber numberWithInt:[contrast intValue] - 5];
 					[self.settingsMemory setSettingsValue:contrast ForKey:kContrast];
 				}
 				self.screenView.menuValue = contrast;
+				[self.screenView setContrast:[contrast floatValue]];
 				[self.screenView updateScreen];
 				m_menuTimer = [NSTimer scheduledTimerWithTimeInterval:5
 															   target:self
@@ -175,10 +226,11 @@
 				m_menuTimer = nil;
 				NSNumber *brightness = [self.settingsMemory settingsValueForKey:kBrightness];
 				if ([brightness integerValue] < 100) {
-					brightness = [NSNumber numberWithInt:[brightness intValue] + 10];
+					brightness = [NSNumber numberWithInt:[brightness intValue] + 5];
 					[self.settingsMemory setSettingsValue:brightness ForKey:kBrightness];
 				}
 				self.screenView.menuValue = brightness;
+				[self.screenView setBrightness:[brightness floatValue]];
 				[self.screenView updateScreen];
 				m_menuTimer = [NSTimer scheduledTimerWithTimeInterval:5
 															   target:self
@@ -192,10 +244,11 @@
 				m_menuTimer = nil;
 				NSNumber *contrast = [self.settingsMemory settingsValueForKey:kContrast];
 				if ([contrast integerValue] < 100) {
-					contrast = [NSNumber numberWithInt:[contrast intValue] + 10];
+					contrast = [NSNumber numberWithInt:[contrast intValue] + 5];
 					[self.settingsMemory setSettingsValue:contrast ForKey:kContrast];
 				}
 				self.screenView.menuValue = contrast;
+				[self.screenView setContrast:[contrast floatValue]];
 				[self.screenView updateScreen];
 				m_menuTimer = [NSTimer scheduledTimerWithTimeInterval:5
 															   target:self
@@ -231,6 +284,7 @@
 	[m_sound play];
 	[self changeChannel:0];
 	m_state = kTVStateIdle;
+	[self.screenView setBrightness:[[self.settingsMemory settingsValueForKey:kBrightness] floatValue]];
 	[self showScreen];
 }
 
@@ -243,6 +297,12 @@
 
 - (void)reset
 {
+	[m_menuTimer invalidate];
+	m_menuTimer = nil;
+	[m_inputChannelTimer invalidate];
+	m_inputChannelTimer = nil;
+	[m_setupChannelTimer invalidate];
+	m_setupChannelTimer = nil;
 	m_state = kTVStateChannelSetup;
 	[self.channelMemory reset];
 	self.screenView.image = nil;
@@ -251,12 +311,6 @@
 	m_signal = nil;
 	m_currentChannel = 0;
 	[self setupCurrentChannel];
-}
-
-- (void)setupChannel:(NSNumber *)channel
-{
-	
-
 }
 
 - (void)setupCurrentChannel
@@ -282,6 +336,7 @@
 	NSLog(@"setup channel %d with frequency %4.1f",m_currentChannel, m_currentFrequency);
 	
 	[self changeChannel:[NSNumber numberWithInt:m_currentChannel]];
+	m_state = kTVStateChannelSetup;
 	self.screenView.isIdle = YES;
 	self.screenView.inputChannel = [NSNumber numberWithInt:m_currentChannel];
 	[self.screenView showInputChannel];
@@ -299,7 +354,7 @@
 		m_setupChannelTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(setupCurrentChannel) userInfo:nil repeats:NO];
 	} else {
 		[self.channelMemory setFrequency:[NSNumber numberWithFloat:m_currentFrequency] forChannel:[NSNumber numberWithInt:m_currentChannel]];
-		m_currentFrequency = ([[self.signalSource highFrequencyForChannel:[NSNumber numberWithInt:m_currentChannel]] floatValue] + 1);
+		m_currentFrequency = m_currentFrequency + 5;
 		m_currentChannel = m_currentChannel + 1;
 		m_setupChannelTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(setupCurrentChannel) userInfo:nil repeats:NO];
 	}

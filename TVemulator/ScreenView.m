@@ -24,6 +24,7 @@
 		m_inputChannelView = [[InputChannelView alloc] initWithFrame:CGRectMake(self.bounds.size.width - 30, self.bounds.size.height - 40, 20, 20)];
 		[self addSubview:m_inputChannelView];
 		[m_inputChannelView setHidden:YES];
+		m_CIColorControls = [[CIFilter filterWithName:@"CIColorControls"] retain];
     }
     
     return self;
@@ -35,8 +36,78 @@
 		[m_backgroundColor setFill];
 		NSRectFill(dirtyRect);
 	} else {
-		[m_image drawInRect:dirtyRect fromRect:dirtyRect operation:NSCompositeSourceOver fraction:1.0];
+		NSData *tiffData = [m_image TIFFRepresentationUsingCompression:NSTIFFCompressionNone factor:0];
+		CIImage *inCiImage = [CIImage imageWithData:tiffData];
+		CIImage *outCiImage = nil;
+		if (m_CIColorControls)
+		{
+			[m_CIColorControls setValue:inCiImage forKey:@"inputImage"];
+			outCiImage = [m_CIColorControls valueForKey:@"outputImage"];
+			CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
+
+			CGRect extent = [outCiImage extent];
+			CIContext* cicontext = [CIContext contextWithCGContext:context options: nil];
+			[cicontext drawImage:outCiImage inRect:dirtyRect fromRect:extent];
+		} else {
+			[m_image drawInRect:dirtyRect fromRect:dirtyRect operation:NSCompositeSourceOver fraction:0.25];
+		}
 	}
+}
+
+- (void)setBrightness:(float)brightness{
+	_brightness = brightness;
+	NSNumber *brightnessNumber = nil;
+	brightnessNumber = [NSNumber numberWithFloat:(brightness-50)/50.0];
+	
+	if (m_CIColorControls == nil)
+        m_CIColorControls = [CIFilter filterWithName:@"CIColorControls"];
+	
+    // set new brightness value
+    [m_CIColorControls setValue:brightnessNumber
+						 forKey:@"inputBrightness"];
+	
+    // hold saturation unchanged. kCIAttributeIdentity = A value that results
+    // in no effect on the input image.
+    [m_CIColorControls setValue:[[[m_CIColorControls attributes]
+								  objectForKey:@"inputSaturation"]
+								 objectForKey:@"CIAttributeIdentity"]
+						 forKey: @"inputSaturation"];
+	
+    // hold contrast unchanged. kCIAttributeIdentity = A value that results
+    // in no effect on the input image.
+    [m_CIColorControls setValue:[[[m_CIColorControls attributes]
+								  objectForKey:@"inputContrast"]
+								 objectForKey:@"CIAttributeIdentity"]
+						 forKey: @"inputContrast"];
+}
+
+- (void)setContrast:(float)contrast
+{
+	_contrast = contrast;
+	NSNumber *contrastNumber = nil;
+	contrastNumber = [NSNumber numberWithFloat:contrast/25.0];
+	
+    if (m_CIColorControls == nil)
+        m_CIColorControls = [CIFilter filterWithName:@"CIColorControls"];
+	
+    // set new contrast value
+    [m_CIColorControls setValue:contrastNumber
+						forKey:@"inputContrast"];
+	
+    // hold brightness unchanged. kCIAttributeIdentity = A value that results
+    // in no effect on the input image.
+    [m_CIColorControls setValue:[[[m_CIColorControls attributes]
+								 objectForKey:@"inputBrightness"]
+								objectForKey:@"CIAttributeIdentity"]
+						forKey: @"inputBrightness"];
+	
+    // hold saturation unchanged. kCIAttributeIdentity = A value that results
+    // in no effect on the input image.
+    [m_CIColorControls setValue:[[[m_CIColorControls attributes]
+								 objectForKey:@"inputSaturation"]
+								objectForKey:@"CIAttributeIdentity"]
+						forKey: @"inputSaturation"];
+    
 }
 
 - (void)switchOn

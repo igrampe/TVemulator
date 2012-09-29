@@ -60,8 +60,7 @@
 {
 	for (int i = 0; i < [m_data count]; i++) {
 		NSDictionary *dict = [m_data objectAtIndex:i];
-		if (([frequency doubleValue] <= [[dict objectForKey:@"high"] doubleValue]) &&
-			([frequency doubleValue] >= [[dict objectForKey:@"low"] doubleValue])) {
+		if (fabs([frequency doubleValue] - ([[dict objectForKey:@"high"] doubleValue] + [[dict objectForKey:@"low"] doubleValue])/2) < 2) {
 			NSImage *image = [[m_data objectAtIndex:i] objectForKey:@"image"];
 			return image;
 		}
